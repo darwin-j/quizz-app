@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'quiz_brain.dart';
 
+QuizBrain quizBrain = QuizBrain();
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -26,11 +28,16 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-  List<String> ques = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
+  // List<String> ques = [
+  // 'You can lead a cow down stairs but not up stairs.',
+  // 'Approximately one quarter of human bones are in the feet.',
+  // 'A slug\'s blood is green.'
+  // ];
+
+  // List<bool> ans = [false, true, true];
+
+  // Question q1 = Question(
+  // // q: 'You can lead a cow down stairs but not up stairs.', a: false);
 
   int quesNum = 0;
 
@@ -46,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                ques[quesNum],
+                quizBrain.quesBank[quesNum].ques,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -70,6 +77,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool crtAns = quizBrain.quesBank[quesNum].ans;
+                if (crtAns == true) {
+                  print('crt');
+                } else {
+                  print('wrong');
+                }
                 setState(() {
                   quesNum++;
                 });
@@ -90,6 +103,12 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool crtAns = quizBrain.quesBank[quesNum].ans;
+                if (crtAns == false) {
+                  print('crt');
+                } else {
+                  print('wrong');
+                }
                 setState(() {
                   quesNum++;
                 });
